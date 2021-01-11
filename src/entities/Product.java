@@ -30,14 +30,12 @@ public class Product {
 	}
 
 	// Reference method
-	public static void staticPriceUpdate(Product p) {
-		p.setPrice(p.getPrice() * 1.1);
+	public static String staticUpperCaseName(Product p) {
+		return p.getName().toUpperCase();
 	}
 	
-	// Reference method
-		public void nonStaticPriceUpdate() {
-			setPrice(getPrice() * 1.1);
-		}
+
+		
 
 	@Override
 	public String toString() {

@@ -20,10 +20,9 @@ public class Program {
 		list.add(new Product("Tablet", 350.50));
 		list.add(new Product("HD Case", 80.90));
 		
-		//Aplicamos o map(Aplica uma função a cada elemento da stream
-		//-> convertando a list pra stream e depois convertendo para lista
+		//Reference Method static
 		
-		List<String> names = list.stream().map(new UppperCaseName()).collect(Collectors.toList());
+		List<String> names = list.stream().map(Product::staticUpperCaseName).collect(Collectors.toList());
 		
 		names.forEach(System.out::println);
 		
