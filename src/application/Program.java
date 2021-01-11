@@ -22,7 +22,7 @@ public class Program {
 		
 		//Reference Method static
 		
-		List<String> names = list.stream().map(Product::staticUpperCaseName).collect(Collectors.toList());
+		List<String> names = list.stream().map(Product::nonStaticUpperCaseName).collect(Collectors.toList());
 		
 		names.forEach(System.out::println);
 		

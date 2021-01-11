@@ -34,6 +34,10 @@ public class Product {
 		return p.getName().toUpperCase();
 	}
 	
+	// Reference method NON STATIC
+	public  String nonStaticUpperCaseName() {
+		return name.toUpperCase();
+	}
 
 		
 
