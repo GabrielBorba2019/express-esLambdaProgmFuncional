@@ -17,10 +17,9 @@ public class Program {
 		list.add(new Product("Tablet", 350.50));
 		list.add(new Product("HD Case", 80.90));
 		
-		
-		//Predicado implemantado manualmente por meio da interface PREDICAT
-		//Cria uma interface funcional e passa como parametro no removeIF
-		list.removeIf(new ProductPredicate());
+		//Tambem aceita uma refecia para método, ao inves de um objeto instanciado de Predicate
+		//Method Reference
+		list.removeIf(Product::staticProductPredicate);
 		
 		for (Product p : list) {
 			System.out.println(p);
