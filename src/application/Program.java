@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entities.Product;
+import util.ProductPredicate;
 
 public class Program {
 
@@ -17,8 +18,9 @@ public class Program {
 		list.add(new Product("HD Case", 80.90));
 		
 		
-		//ExpressãoLambad predicado
-		list.removeIf(p -> p.getPrice() >= 100);
+		//Predicado implemantado manualmente por meio da interface PREDICAT
+		//Cria uma interface funcional e passa como parametro no removeIF
+		list.removeIf(new ProductPredicate());
 		
 		for (Product p : list) {
 			System.out.println(p);
