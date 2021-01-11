@@ -1,10 +1,10 @@
 package entities;
 
 public class Product {
-	
+
 	private String name;
 	private Double price;
-	
+
 	public Product() {
 	}
 
@@ -28,12 +28,17 @@ public class Product {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
-	//Reference method
+
+	// Reference method
 	public static boolean staticProductPredicate(Product p) {
 		return p.getPrice() >= 100.0;
 	}
-	
+
+	// Reference method non static
+	public boolean nonstaticProductPredicate() {
+		return getPrice() >= 100.0;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [name=" + name + ", price=" + price + "]";

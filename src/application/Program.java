@@ -17,9 +17,8 @@ public class Program {
 		list.add(new Product("Tablet", 350.50));
 		list.add(new Product("HD Case", 80.90));
 		
-		//Tambem aceita uma refecia para método, ao inves de um objeto instanciado de Predicate
-		//Method Reference
-		list.removeIf(Product::staticProductPredicate);
+		//Reference Method Não estático
+		list.removeIf(Product::nonstaticProductPredicate);
 		
 		for (Product p : list) {
 			System.out.println(p);
