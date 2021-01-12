@@ -4,13 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import entities.Product;
+import entities.Employee;
 
 public class Program {
 
@@ -21,38 +20,37 @@ public class Program {
 
 		System.out.println("Enter full file path: ");
 		String path = sc.nextLine();
+		System.out.println("Enter salary: ");
+		Double salary = sc.nextDouble();
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
-			List<Product> list = new ArrayList<>();
-
 			String line = br.readLine();
+
+			List<Employee> emp = new ArrayList<>();
+
 			while (line != null) {
 				String[] fields = line.split(",");
-				list.add(new Product(fields[0], Double.parseDouble(fields[1])));
+				emp.add(new Employee(fields[0], fields[1], Double.parseDouble(fields[2])));
+
 				line = br.readLine();
 			}
-			
-			Double avg = list.stream()
-					.map(p -> p.getPrice())
-					.reduce(0.0, (x,y) -> x + y) / list.size ();
-			
-			System.out.println("Average price: " + String.format("%.2f", avg));
-			
-			Comparator<String> comp = (s1, s2) -> s1.toUpperCase().compareTo(s2.toUpperCase());
-			
-			//PipeLine
-			List<String> names = list.stream()
-					.filter(p -> p.getPrice() < avg)
-					.map(p -> p.getName())
-					.sorted(comp.reversed())
+
+			List<String> email = emp.stream().filter(e -> e.getSalary() > salary).map(e -> e.getEmail()).sorted()
 					.collect(Collectors.toList());
-			names.forEach(System.out::println);
-			
-		}catch (IOException e) {
-				System.out.println("Error: "  + e.getMessage());
+			System.out.println("Email of people whose salary is more than " + String.format("%.2f", salary));
+			email.forEach(System.out::println);
+
+			Double avg = emp.stream().filter(e -> e.getName().charAt(0) == 'M').map(e -> e.getSalary()).reduce(0.0,
+					(x, y) -> x + y);
+
+			System.out.println("Sum of slary of people whose name starts with 'M' :" + String.format("%.2f", avg));
+
+		} catch (IOException e) {
+			System.out.println("Error: " + e.getMessage());
 		}
+
 		sc.close();
+
 	}
-	
 }
